@@ -1,0 +1,19 @@
+{
+  "name": "ecommerceapp",
+  "version": "1.0.0",
+  "description": "Project - Ecommerce Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pallab Nandi",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jest": "^29.2.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.25.7"
+  }
+}
