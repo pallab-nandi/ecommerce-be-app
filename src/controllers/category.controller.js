@@ -8,8 +8,9 @@ function findAll(req, res) {
         .then((categories) => categories.map((category) => category.dataValues))
         .then((category) => {
             console.log('All categories are fetched', category);
-            let returnValue = category;
-            returnValue.message = 'All categories are fetched';
+            let returnValue = {};
+            returnValue.message = 'All categories are fetched successfully';
+            returnValue.category = category;
             res.setHeader('content-type', 'application/json');
             res.writeHead(200);
             res.end(JSON.stringify(returnValue));

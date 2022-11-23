@@ -5,7 +5,10 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 
-require('./routes/api/v1/category.route')(app);
+// require('./routes/api/index.route')(app);
+
+require('./routes/api/index.route')(app);
+
 
 app.get('/', (req, res) => {
     res.send('Hello, World!');
