@@ -3,7 +3,9 @@ const app = express();
 const serverConfig = require('./src/configs/server.config');
 const bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({ extended : false}));
+app.use(bodyParser.json());
+
+require('./routes/api/v1/category.route')(app);
 
 app.get('/', (req, res) => {
     res.send('Hello, World!');
