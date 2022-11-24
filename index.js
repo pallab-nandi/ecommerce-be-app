@@ -5,9 +5,7 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 
-// require('./routes/api/index.route')(app);
-
-require('./routes/api/index.route')(app);
+require('./routes/api/index.routes')(app);
 
 
 app.get('/', (req, res) => {
