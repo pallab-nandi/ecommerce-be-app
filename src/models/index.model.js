@@ -8,8 +8,10 @@ db.Sequelize = Sequelize;
 
 const category = require('./category.model')(sequelize, Sequelize);
 const product = require('./product.model')(sequelize, Sequelize);
+const user = require('./user.model')(sequelize, Sequelize);
 
 db.category = category;
 db.product = product;
+db.user = user;
 
 module.exports = db;

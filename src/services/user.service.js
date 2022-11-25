@@ -1,18 +1,18 @@
 const db = require('../models/index.model');
 
-class CategoryService {
+class UserService {
     schema;
     constructor() {
-        this.schema = db.category;
+        this.schema = db.user;
     }
 
-    getCategories() {
+    findAll() {
         return this
         .schema
         .findAll();
     }
 
-    getCategoryByID(id) {
+    findOne(id) {
         return this
         .schema
         .findOne({
@@ -22,23 +22,23 @@ class CategoryService {
         })
     }
 
-    createCategory(category) {
+    createUser(user) {
         return this
         .schema
-        .create(category)
+        .create(user)
     }
 
-    updateCategoryByID(category, id) {
+    updateUser(user, id) {
         return this
         .schema
-        .update(category, {
+        .update(user, {
             where : {
                 id : id
             }
         })
     }
 
-    deleteCategoryByID(id) {
+    deleteUser(id) {
         return this
         .schema
         .destroy({
@@ -49,6 +49,6 @@ class CategoryService {
     }
 }
 
-const categoryService = new CategoryService();
+const userService = new UserService();
 
-module.exports = { categoryService };
+module.exports = { userService };
