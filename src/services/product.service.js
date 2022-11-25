@@ -1,3 +1,5 @@
+const { Op } = require('sequelize');
+const { category } = require('../models/index.model');
 const db = require('../models/index.model');
 
 class ProductService {
@@ -6,7 +8,18 @@ class ProductService {
         this.schema = db.product;
     }
 
-    getProducts() {
+    getProducts(filters) {
+
+        let filterObj = this.#buildFilters(filters);
+
+        if(Object.values(filters).length != 0) {
+            return this
+            .schema
+            .findAll({
+                where : filterObj
+            })
+        }
+        
         return this
         .schema
         .findAll();
@@ -46,6 +59,37 @@ class ProductService {
                 id : id
             }
         })
+    }
+
+    #buildFilters(filters) {
+        let obj = {};
+
+        if(Number(filters.maxPrice) && Number(filters.minPrice)) {
+            obj['cost'] = {
+                [Op.and] : [
+                    {
+                        [Op.lte] : Number(filters.maxPrice)
+                    },
+                    {
+                        [Op.gte] : Number(filters.minPrice)
+                    }
+                ]
+            }
+        }else if(Number(filters.maxPrice)) {
+            obj['cost'] = {
+                [Op.lte] : Number(filters.maxPrice)
+            }
+        }else if(Number(filters.minPrice)) {
+            obj['cost'] = {
+                [Op.gte] : Number(filters.minPrice)
+            }
+        }
+
+        if(Number(filters.categoryID)) {
+            obj['categoryID'] = Number(filters.categoryID)
+        }
+
+        return obj;
     }
 }
 

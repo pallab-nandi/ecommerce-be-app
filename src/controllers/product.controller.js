@@ -2,9 +2,12 @@ const { executeWithSync } = require('../connections/sequelize.connection');
 const { productService } = require('../services/product.service');
 
 function findAll(req, res) {
+
+    let filters = req.query;
+
     executeWithSync(
         productService
-        .getProducts()
+        .getProducts(filters)
         .then((products) => products.map((product) => product.dataValues))
         .then((product) => {
             console.log('All products are fetched successfully', product);
