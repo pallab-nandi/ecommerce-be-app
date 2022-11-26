@@ -1,0 +1,50 @@
+[
+    {
+        "name" : "smartphones",
+        "description" : "A smartphone is a cellular telephone with an integrated computer."
+    },
+    {
+        "name" : "laptops",
+        "description" : "A laptop computer, sometimes called a notebook computer by manufacturers, is a battery- or AC-powered personal computer."
+    },
+    {
+        "name" : "fragrances",
+        "description" : "Fragrances can be defined as substances that emit and diffuse a pleasant and fragrant odor."
+    },
+    {
+        "name" : "skincare",
+        "description" : "Skin care is a range of practices that support skin integrity, enhance its appearance, and relieve skin conditions."
+    },
+    {
+        "name" : "groceries",
+        "description" : "Groceries are foods you buy at a grocers or at a supermarket such as flour, sugar, and tinned foods."
+    },
+    {
+        "name" : "home-decors",
+        "description" : "It refers to the aesthetic components used to make a home more attractive and visually appealing."
+    },
+    {
+        "name" : "furniture",
+        "description" : "Furniture consists of large objects such as tables, chairs, or beds that are used in a room."
+    },
+    {
+        "name" : "fashions",
+        "description" : "Fashion is a form of self-expression and autonomy at a particular period and place and in a specific context."
+    },
+    {
+        "name" : "jwelleries",
+        "description" : "Ornamental pieces (such as rings, necklaces, earrings, and bracelets) that are made of materials which may or may not be precious."
+    },
+    {
+        "name" : "sunglasses",
+        "description" : "Sunglasses are a form of protective eyewear designed primarily to prevent bright sunlight and high-energy visible light from damaging or discomforting the eyes."
+    },
+    {
+        "name" : "automotive",
+        "description" : "The automotive comprises a wide range of motor vehicles accessories"
+    },
+    {
+        "name" : "lighting",
+        "description" : "It is the fourth layer of lighting which helps you illuminate the entire room instead of focusing on one particular area or object of the room."
+    }
+]

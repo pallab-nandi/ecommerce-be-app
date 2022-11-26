@@ -6,8 +6,9 @@ const db = require('./src/models/index.model');
 
 app.use(bodyParser.json());
 
-db.sequelize.sync({ alter : true }).then(() => {
+db.sequelize.sync({ force : true }).then(() => {
     console.log('Database recreated');
+    db.initData();
 })
 
 require('./routes/api/index.routes')(app);

@@ -8,12 +8,12 @@ module.exports = function(sequelize, Sequelize) {
             autoIncrement : true,
             allowNull : false
         },
-        categoryID : {
-            type : DataTypes.TINYINT,
-            allowNull : false
-        },
         name : {
             type : DataTypes.STRING,
+            allowNull : false
+        },
+        categoryID : {
+            type : DataTypes.TINYINT,
             allowNull : false
         },
         description : {
