@@ -1,9 +1,7 @@
-const { executeWithSync } = require('../connections/sequelize.connection');
 const { categoryService } = require('../services/category.service');
 
 function findAll(req, res) {
-    executeWithSync(
-        categoryService
+    categoryService
         .getCategories()
         .then((categories) => categories.map((category) => category.dataValues))
         .then((category) => {
@@ -23,15 +21,13 @@ function findAll(req, res) {
                 'message' : 'Error while fetching categories'
             }))
         })
-    )
 }
 
 function findOne(req, res) {
 
     let id = req.params.id;
 
-    executeWithSync(
-        categoryService
+    categoryService
         .getCategoryByID(id)
         .then((category) => category.dataValues)
         .then((category) => {
@@ -51,7 +47,6 @@ function findOne(req, res) {
                 'message' : 'Error while fetching category'
             }))
         })
-    )
 }
 
 function createCategory(req, res) {
@@ -60,8 +55,7 @@ function createCategory(req, res) {
     category.name = req.body.name;
     category.description = req.body.description;
 
-    executeWithSync(
-        categoryService
+    categoryService
         .createCategory(category)
         .then((category) => category.dataValues)
         .then((category) => {
@@ -81,7 +75,6 @@ function createCategory(req, res) {
                 'message' : 'Error while creating category'
             }))
         })
-    )
 }
 
 function updateCategory(req, res) {
@@ -92,8 +85,7 @@ function updateCategory(req, res) {
 
     let id = req.params.id
 
-    executeWithSync(
-        categoryService
+    categoryService
         .updateCategoryByID(category, id)
         .then((category) => category.dataValues)
         .then((category) => {
@@ -113,15 +105,13 @@ function updateCategory(req, res) {
                 'message' : 'Error while updating category'
             }))
         })
-    )
 }
 
 function deleteCategory(req, res) {
 
     let id = req.params.id;
 
-    executeWithSync(
-        categoryService
+    categoryService
         .deleteCategoryByID(id)
         .then((category) => category.dataValues)
         .then((category) => {
@@ -141,7 +131,6 @@ function deleteCategory(req, res) {
                 'message' : 'Error while deleting category'
             }))
         })
-    )
 }
 
 module.exports = {

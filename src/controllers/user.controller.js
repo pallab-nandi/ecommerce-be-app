@@ -1,9 +1,7 @@
-const { executeWithSync } = require('../connections/sequelize.connection');
 const { userService } = require('../services/user.service');
 
 function findAll(req, res) {
-    executeWithSync(
-        userService
+    userService
         .findAll()
         .then((users) => users.map((user) => user.dataValues))
         .then((user) => {
@@ -23,15 +21,13 @@ function findAll(req, res) {
                 'message' : 'Error while fetching all users'
             }))
         })
-    )
 }
 
 function findOne(req, res) {
 
     let id = req.params.id;
 
-    executeWithSync(
-        userService
+    userService
         .findOne(id)
         .then((user) => user.dataValues)
         .then((user) => {
@@ -51,7 +47,6 @@ function findOne(req, res) {
                 'message' : 'Error while fetching this user'
             }))
         })
-    )
 }
 
 function createUser(req, res) {
@@ -61,8 +56,7 @@ function createUser(req, res) {
     user.email = req.body.email;
     user.password = req.body.password;
     
-    executeWithSync(
-        userService
+    userService
         .createUser(user)
         .then((user) => user.dataValues)
         .then((user) => {
@@ -82,7 +76,6 @@ function createUser(req, res) {
                 'message' : 'Error while creating user'
             }))
         })
-    )
 }
 
 function updateUser(req, res) {
@@ -94,8 +87,7 @@ function updateUser(req, res) {
 
     let id = req.params.id;
 
-    executeWithSync(
-        userService
+    userService
         .updateUser(user, id)
         .then((user) => user.dataValues)
         .then((user) => {
@@ -115,15 +107,13 @@ function updateUser(req, res) {
                 'message' : 'Error while updating user'
             }))
         })
-    )
 }
 
 function deleteUser(req, res) {
 
     let id = req.params.id;
 
-    executeWithSync(
-        userService
+    userService
         .deleteUser(id)
         .then((user) => user.dataValues)
         .then((user) => {
@@ -143,7 +133,6 @@ function deleteUser(req, res) {
                 'message' : 'Error while deleting user'
             }))
         })
-    )
 }
 
 module.exports = {

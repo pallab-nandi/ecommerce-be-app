@@ -2,8 +2,13 @@ const express = require('express');
 const app = express();
 const serverConfig = require('./src/configs/server.config');
 const bodyParser = require('body-parser');
+const db = require('./src/models/index.model');
 
 app.use(bodyParser.json());
+
+db.sequelize.sync({ alter : true }).then(() => {
+    console.log('Database recreated');
+})
 
 require('./routes/api/index.routes')(app);
 

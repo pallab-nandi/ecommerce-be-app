@@ -22,8 +22,4 @@ function createConnection() {
 
 const { sequelize } = createConnection();
 
-function executeWithSync(callBack) {
-    sequelize.sync().then(() => callBack);
-}
-
-module.exports = { sequelize, executeWithSync };
+module.exports = { sequelize };

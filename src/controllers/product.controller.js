@@ -1,12 +1,10 @@
-const { executeWithSync } = require('../connections/sequelize.connection');
 const { productService } = require('../services/product.service');
 
 function findAll(req, res) {
 
     let filters = req.query;
 
-    executeWithSync(
-        productService
+    productService
         .getProducts(filters)
         .then((products) => products.map((product) => product.dataValues))
         .then((product) => {
@@ -26,15 +24,13 @@ function findAll(req, res) {
                 'message' : 'Error while fetching products'
             }))
         })
-    )
 }
 
 function findOne(req, res) {
 
     let id = req.params.id;
 
-    executeWithSync(
-        productService
+    productService
         .getProductByID(id)
         .then((product) => product.dataValues)
         .then((product) => {
@@ -54,7 +50,6 @@ function findOne(req, res) {
                 'message' : 'Error while fetching the product'
             }))
         })
-    )
 }
 
 function createProduct(req, res) {
@@ -65,8 +60,7 @@ function createProduct(req, res) {
     product.description = req.body.description;
     product.cost = req.body.cost;
 
-    executeWithSync(
-        productService
+    productService
         .createProduct(product)
         .then((product) => product.dataValues)
         .then((product) => {
@@ -86,7 +80,6 @@ function createProduct(req, res) {
                 'message' : 'Error while creating product'
             }))
         })
-    )
 }
 
 function updateProduct(req, res) {
@@ -99,8 +92,7 @@ function updateProduct(req, res) {
 
     let id = req.params.id;
 
-    executeWithSync(
-        productService
+    productService
         .updateProductByID(product, id)
         .then((product) => product.dataValues)
         .then((product) => {
@@ -120,15 +112,13 @@ function updateProduct(req, res) {
                 'message' : 'Error while updating product'
             }))
         })
-    )
 }
 
 function deleteProductByID(req, res) {
     
     let id = req.params.id;
 
-    executeWithSync(
-        productService
+    productService
         .deleteProductByID(id)
         .then((product) => product.dataValues)
         .then((product) => {
@@ -148,7 +138,6 @@ function deleteProductByID(req, res) {
                 'message' : 'Error while deleting product'
             }))
         })
-    )
 }
 
 module.exports = {
