@@ -14,7 +14,7 @@ router.get('/:id', [productValidator.productValidID], productController.findOne)
 router.post('/create', [productValidator.productValidCreateBody], productController.createProduct);
 
 //update product by ID
-router.post('/:id/update', [productValidator.productValidID], [productValidator.productValidUpdateBody], productController.updateProduct);
+router.put('/:id/update', [productValidator.productValidID], [productValidator.productValidUpdateBody], productController.updateProduct);
 
 //delete product by ID
 router.delete('/:id/delete', [productValidator.productValidID], productController.deleteProductByID);
