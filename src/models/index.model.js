@@ -57,6 +57,11 @@ function initData() {
 
     user
     .bulkCreate(userData)
+    .then((users) => users.map((user) => {
+        if(user.name == 'Pallab Nandi') {
+            user.setRoles([1]);
+        } else user.setRoles([2]);
+    }))
     .then(() => {
         console.log('User table data initialized');
     })
