@@ -1,5 +1,6 @@
 const express = require('express');
 const productController = require('../../../src/controllers/product.controller');
+const productValidator = require('../../../src/validators/product.validator');
 
 const router = express.Router();
 
@@ -7,15 +8,15 @@ const router = express.Router();
 router.get('/all', productController.findAll);
 
 //fetch product by ID
-router.get('/:id', productController.findOne);
+router.get('/:id', [productValidator.productValidID], productController.findOne);
 
 //creating product
-router.post('/create', productController.createProduct);
+router.post('/create', [productValidator.productValidCreateBody], productController.createProduct);
 
 //update product by ID
-router.post('/:id/update', productController.updateProduct);
+router.post('/:id/update', [productValidator.productValidID], [productValidator.productValidUpdateBody], productController.updateProduct);
 
 //delete product by ID
-router.delete('/:id/delete', productController.deleteProductByID);
+router.delete('/:id/delete', [productValidator.productValidID], productController.deleteProductByID);
 
 module.exports = router;

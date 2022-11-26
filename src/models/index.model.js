@@ -14,4 +14,14 @@ db.category = category;
 db.product = product;
 db.user = user;
 
+category.hasMany(product, {
+    foreignKey : 'categoryID',
+    targetKey : 'id'
+})
+
+product.belongsTo(category, {
+    foreignKey : 'categoryID',
+    targetKey : 'id'
+})
+
 module.exports = db;

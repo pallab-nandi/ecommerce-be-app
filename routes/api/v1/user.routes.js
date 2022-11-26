@@ -1,5 +1,6 @@
 const express = require('express');
 const userController = require('../../../src/controllers/user.controller');
+const userValidator = require('../../../src/validators/user.validator');
 
 const router = express.Router();
 
@@ -7,16 +8,16 @@ const router = express.Router();
 router.get('/all', userController.findAll);
 
 //fetch user by ID
-router.get('/:id', userController.findOne);
+router.get('/:id', [userValidator.userValidID], userController.findOne);
 
 //create user
-router.post('/create', userController.createUser);
+router.post('/create', [userValidator.userValidCreateBody], userController.createUser);
 
 //update user by ID
-router.post('/:id/update', userController.updateUser);
+router.post('/:id/update', [userValidator.userValidID], [userValidator.userValidUpdateBody], userController.updateUser);
 
 //delete user by ID
-router.delete('/:id/delete', userController.deleteUser);
+router.delete('/:id/delete', [userValidator.userValidID], userController.deleteUser);
 
 
 module.exports = router;

@@ -16,22 +16,37 @@ class ProductService {
             return this
             .schema
             .findAll({
-                where : filterObj
+                where : filterObj,
+                include : [{
+                    required : true,
+                    model : db.category
+                }]
             })
         }
         
         return this
         .schema
-        .findAll();
+        .findAll({
+            include : [{
+                required : true,
+                model : db.category
+            }]
+        });
     }
 
-    getProductByID(id) {
+    getProductByID(ids) {
         return this
         .schema
         .findOne({
             where : {
-                id : id
-            }
+                id : {
+                    [Op.or] : ids
+                }
+            },
+            include : [{
+                required : true,
+                model : db.category
+            }]
         })
     }
 
