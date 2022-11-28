@@ -12,7 +12,9 @@ class RoleService {
         .schema
         .findAll({
             where : {
-                [Op.or] : roles
+                name : {
+                    [Op.or] : roles
+                }
             }
         })
         .catch((err) => {

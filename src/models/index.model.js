@@ -50,41 +50,39 @@ function initData() {
     .bulkCreate(roleData)
     .then(() => {
         console.log('Roles table data initialized');
+        user
+        .bulkCreate(userData)
+        .then((users) => users.map((user) => {        
+            if(user.name == 'Pallab Nandi') {
+                user.setRoles([1, 2]);
+            } else user.setRoles([2]);
+        }))
+        .then(() => {
+            console.log('User table data initialized');
+        })
+        .catch((err) => {
+            console.log("Error while initializing User Data", err);
+        })
     })
     .catch((err) => {
         console.log("Error while initializing Role Data", err);
-    })
-
-    user
-    .bulkCreate(userData)
-    .then((users) => users.map((user) => {
-        if(user.name == 'Pallab Nandi') {
-            user.setRoles([1]);
-        } else user.setRoles([2]);
-    }))
-    .then(() => {
-        console.log('User table data initialized');
-    })
-    .catch((err) => {
-        console.log("Error while initializing User Data", err);
     })
 
     category
     .bulkCreate(categoryData)
     .then(() => {
         console.log('Category table data initialized');
+        product
+        .bulkCreate(productData)
+        .then(() => {
+            console.log('Product table data initialized');
+        })
+        .catch((err) => {
+            console.log("Error while initializing Product Data", err);
+        })
     })
     .catch((err) => {
         console.log("Error while initializing Category Data", err);
-    })
-
-    product
-    .bulkCreate(productData)
-    .then(() => {
-        console.log('Product table data initialized');
-    })
-    .catch((err) => {
-        console.log("Error while initializing Product Data", err);
     })
 }
 

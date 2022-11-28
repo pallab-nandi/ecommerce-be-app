@@ -1,8 +1,12 @@
 const fs = require('fs');
 const path = require('path');
+const bcrypt = require('bcryptjs');
 
 function userData() {
     let userData = JSON.parse(fs.readFileSync(path.join(__dirname, 'users.data.json'), 'utf-8'));
+    userData.map((user) => {
+        user.password = bcrypt.hashSync(user.password, 8);
+    })
     return userData;
 }
 

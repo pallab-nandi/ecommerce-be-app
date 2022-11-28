@@ -47,6 +47,16 @@ class UserService {
             }
         })
     }
+
+    findUserByEmail(email) {
+        return this
+        .schema
+        .findOne({
+            where : {
+                email : email.toLowerCase()
+            }
+        })
+    }
 }
 
 const userService = new UserService();
