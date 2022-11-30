@@ -1,6 +1,8 @@
 const { userService } = require('./user.service');
 const { roleService } = require('./role.service');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const authConfig = require('../configs/auth.config');
 
 class AuthService {
 
@@ -23,6 +25,53 @@ class AuthService {
         }).catch((err) => {
             console.log('Error while creating user', err);
             return Promise.reject("Error while creating user");
+        })
+    }
+
+    signIn(email, password) {
+
+        return userService
+        .findUserByEmail(email)
+        .then((user) => {
+            if(user) {
+
+                let validPass = bcrypt.compareSync(password, user.password);
+                if(validPass) {
+                    return user.getRoles()
+                    .then((roles) => {
+                        let roleName = roles.map((role) => role.name)
+                        let token = jwt.sign(
+                            {
+                                id : user.id,
+                                name : user.name,
+                                roles : roleName
+                            },
+                            authConfig.secret,
+                            {
+                                expiresIn : authConfig.expiryAt
+                            }
+                        )
+
+                        return {
+                            id : user.id,
+                            name : user.name,
+                            roles : roleName,
+                            accessToken : token
+                        }
+                    })
+                } else {
+                    return Promise.reject({
+                        errorCode : 401,
+                        message : 'Password is incorrect'
+                    })
+                }
+
+            } else {
+                return Promise.reject({
+                    errorCode : 404,
+                    message : 'User not found'
+                })
+            }
         })
     }
 

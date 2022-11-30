@@ -14,7 +14,7 @@ router.get('/:id',[categoryValidator.categoryValidID], categoryController.findOn
 router.post('/create', [categoryValidator.categoryValidCreateBody], categoryController.createCategory);
 
 //update a existed category
-router.put('/:id/update', [categoryValidator.categoryValidID], [categoryValidator.categoryValidUpdateBody], categoryController.updateCategory);
+router.put('/:id/update', [categoryValidator.categoryValidID, categoryValidator.categoryValidUpdateBody], categoryController.updateCategory);
 
 //delete a category by its ID
 router.delete('/:id/delete', [categoryValidator.categoryValidID], categoryController.deleteCategory);

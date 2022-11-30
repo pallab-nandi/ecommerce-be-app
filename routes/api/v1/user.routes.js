@@ -14,7 +14,7 @@ router.get('/:id', [userValidator.userValidID], userController.findOne);
 // router.post('/create', [userValidator.userValidCreateBody], userController.createUser);
 
 //update user by ID
-router.put('/:id/update', [userValidator.userValidID], [userValidator.userValidUpdateBody], userController.updateUser);
+router.put('/:id/update', [userValidator.userValidID, userValidator.userValidUpdateBody], userController.updateUser);
 
 //delete user by ID
 router.delete('/:id/delete', [userValidator.userValidID], userController.deleteUser);

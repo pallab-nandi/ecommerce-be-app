@@ -6,6 +6,9 @@ const authValidator = require('../../../src/validators/auth.validator');
 const router = express.Router();
 
 //SignUp
-router.post('/signUp', [userValidator.userValidCreateBody], [authValidator.isEmailDuplicate], [authValidator.validEmail], [authValidator.validPassword], authController.signUp);
+router.post('/signUp', [userValidator.userValidCreateBody, authValidator.isEmailDuplicate, authValidator.validEmail, authValidator.validPassword], authController.signUp);
+
+//LogIn
+router.post('/login', authController.signIn);
 
 module.exports = router;

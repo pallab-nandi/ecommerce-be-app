@@ -29,6 +29,35 @@ function signUp(req, res) {
     })
 }
 
+function signIn(req, res) {
+
+    let email = req.body.email;
+    let password = req.body.password
+
+    authService
+    .signIn(email, password)
+    .then((authRes) => {
+        res.setHeader('content-type', 'application/json');
+        res.writeHead(200);
+        res.end(JSON.stringify({
+            'message' : "User loggedIn successfully",
+            authRes
+        }))
+    })
+    .catch((err) => {
+        res.setHeader('content-type', 'application/json');
+        if(!err.errorCode) {
+            err.errorCode = 500;
+            err.message = 'Error while signIn'
+        }
+        res.writeHead(err.errorCode);
+        res.end(JSON.stringify({
+            message : err.message
+        }));
+    })
+}
+
 module.exports = {
-    signUp
+    signUp,
+    signIn
 }
