@@ -1,31 +1,28 @@
 const { DataTypes } = require("sequelize")
 
 module.exports = function(sequelize, Sequelize) {
-    const product = sequelize.define('products', {
+    const orderDetail = sequelize.define('orderDetails', {
         id : {
             type : DataTypes.TINYINT,
             primaryKey : true,
             autoIncrement : true,
             allowNull : false
         },
-        name : {
-            type : DataTypes.STRING,
-            allowNull : false
-        },
-        categoryID : {
+        orderID : {
             type : DataTypes.TINYINT,
             allowNull : false
         },
-        description : {
-            type : DataTypes.STRING
-        },
-        cost : {
+        total : {
             type : DataTypes.DECIMAL,
+            allowNull : false
+        },
+        status : {
+            type : DataTypes.TINYINT,
             allowNull : false
         }
     }, {
-        tableName : 'products'
+        tableName : 'orderDetails'
     })
 
-    return product;
+    return orderDetail;
 }

@@ -10,11 +10,17 @@ const category = require('./category.model')(sequelize, Sequelize);
 const product = require('./product.model')(sequelize, Sequelize);
 const user = require('./user.model')(sequelize, Sequelize);
 const role = require('./role.models')(sequelize, Sequelize);
+const orderDetail = require('./orderDetail.model')(sequelize, Sequelize);
+const orderItem = require('./orderItem.model')(sequelize, Sequelize);
+const orderStatus = require('./orderStatus.model')(sequelize, Sequelize);
 
 db.category = category;
 db.product = product;
 db.user = user;
 db.role = role;
+db.orderDetail = orderDetail;
+db.orderItem = orderItem;
+db.orderStatus = orderStatus;
 
 category.hasMany(product, {
     foreignKey : 'categoryID',
@@ -38,19 +44,62 @@ user.belongsToMany(role, {
     targetKey : 'id'
 })
 
+orderStatus.hasMany(orderDetail, {
+    foreignKey : 'status',
+    targetKey : 'id'
+})
+
+orderDetail.belongsTo(orderStatus, {
+    foreignKey : 'status',
+    targetKey : 'id'
+})
+
+user.hasMany(orderItem, {
+    foreignKey : 'userID',
+    targetKey : 'id'
+})
+
+orderItem.belongsTo(user, {
+    foreignKey : 'userID',
+    targetKey : 'id'
+})
+
+product.hasMany(orderItem, {
+    foreignKey : 'productID',
+    targetKey : 'id'
+})
+
+orderItem.belongsTo(product, {
+    foreignKey : 'productID',
+    targetKey : 'id'
+})
+
+orderItem.hasOne(orderDetail, {
+    foreignKey : 'orderID',
+    targetKey : 'id'
+})
+
+orderDetail.belongsTo(orderItem, {
+    foreignKey : 'orderID',
+    targetKey : 'id'
+})
+
 const data = require('../../data/index.data');
 
 const roleData = data.roleData();
 const userData = data.userData();
 const categoryData = data.categoryData();
 const productData = data.productData();
+const orderStatusData = data.orderStatusData();
+const orderItemsData = data.orderItemsData();
+const orderDetailsData = data.orderDetailsData();
 
 function initData() {
-    role
+    return role
     .bulkCreate(roleData)
     .then(() => {
         console.log('Roles table data initialized');
-        user
+        return user
         .bulkCreate(userData)
         .then((users) => users.map((user) => {        
             if(user.name == 'Pallab Nandi') {
@@ -64,28 +113,62 @@ function initData() {
             console.log("Error while initializing User Data", err);
         })
     })
-    .catch((err) => {
-        console.log("Error while initializing Role Data", err);
-    })
-
-    category
-    .bulkCreate(categoryData)
     .then(() => {
-        console.log('Category table data initialized');
-        product
-        .bulkCreate(productData)
+        return category
+        .bulkCreate(categoryData)
         .then(() => {
-            console.log('Product table data initialized');
+            console.log('Category table data initialized');
+            return product
+            .bulkCreate(productData)
+            .then(() => {
+                console.log('Product table data initialized');
+            })
+            .catch((err) => {
+                console.log("Error while initializing Product Data", err);
+            })
         })
         .catch((err) => {
-            console.log("Error while initializing Product Data", err);
+            console.log("Error while initializing Category Data", err);
+        })
+    })
+    .then(() => {
+        return orderStatus
+        .bulkCreate(orderStatusData)
+        .then(() => {
+            console.log('Order Status Data initialized');
+        })
+        .catch((err) => {
+            console.log('Error while data initializing', err);
+        })
+    })
+    .then(() => {
+        return orderItem
+        .bulkCreate(orderItemsData)
+        .then(() => {
+            console.log('Order Items Data initialized');
+            return orderDetail
+            .bulkCreate(orderDetailsData)
+            .then(() => {
+                console.log('Order Details data initialized');
+            })
+            .catch((err) => {
+                console.log('Error while initializing order details',err);
+            })
+        })
+        .catch((err) => {
+            console.log('Error while initializing order details',err);
         })
     })
     .catch((err) => {
-        console.log("Error while initializing Category Data", err);
-    })
+        console.log("Error while initializing Role Data", err);
+    })  
 }
 
+// function initOrderData() {
+    
+// }
+
 db.initData = initData;
+// db.initOrderData = initOrderData;
 
 module.exports = db;

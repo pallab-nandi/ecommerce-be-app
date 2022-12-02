@@ -1,0 +1,42 @@
+[
+    {
+        "userID" : 2,
+        "productID" : 3,
+        "quantity" : 2
+    },
+    {
+        "userID" : 2,
+        "productID" : 4,
+        "quantity" : 1
+    },
+    {
+        "userID" : 3,
+        "productID" : 3,
+        "quantity" : 1
+    },
+    {
+        "userID" : 5,
+        "productID" : 1,
+        "quantity" : 4
+    },
+    {
+        "userID" : 6,
+        "productID" : 3,
+        "quantity" : 2
+    },
+    {
+        "userID" : 6,
+        "productID" : 8,
+        "quantity" : 3
+    },
+    {
+        "userID" : 9,
+        "productID" : 14,
+        "quantity" : 3
+    },
+    {
+        "userID" : 10,
+        "productID" : 17,
+        "quantity" : 5
+    }
+]

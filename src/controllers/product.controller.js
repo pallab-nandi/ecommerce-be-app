@@ -28,10 +28,10 @@ function findAll(req, res) {
 
 function findOne(req, res) {
 
-    let id = req.params.id;
+    let ids = req.params;
 
     productService
-        .getProductByID(id)
+        .getProductByID(ids)
         .then((product) => product.dataValues)
         .then((product) => {
             console.log('Product fetched by ID successfully', product);

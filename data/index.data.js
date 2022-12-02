@@ -25,9 +25,27 @@ function roleData() {
     return roleData;
 }
 
+function orderStatusData() {
+    let roleData = JSON.parse(fs.readFileSync(path.join(__dirname, 'orderStatus.data.json'), 'utf-8'));
+    return roleData;
+}
+
+function orderItemsData() {
+    let roleData = JSON.parse(fs.readFileSync(path.join(__dirname, 'orderItems.data.json'), 'utf-8'));
+    return roleData;
+}
+
+function orderDetailsData() {
+    let roleData = JSON.parse(fs.readFileSync(path.join(__dirname, 'orderDetails.data.json'), 'utf-8'));
+    return roleData;
+}
+
 module.exports = {
     userData,
     categoryData,
     productData,
-    roleData
+    roleData,
+    orderStatusData,
+    orderItemsData,
+    orderDetailsData
 }
