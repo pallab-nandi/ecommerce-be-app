@@ -1,8 +1,7 @@
 const { userService } = require('./user.service');
 const { roleService } = require('./role.service');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const authConfig = require('../configs/auth.config');
+const { jwtService } = require('./jwt.service');
 
 class AuthService {
 
@@ -39,19 +38,13 @@ class AuthService {
                 if(validPass) {
                     return user.getRoles()
                     .then((roles) => {
-                        let roleName = roles.map((role) => role.name)
-                        let token = jwt.sign(
-                            {
-                                id : user.id,
-                                name : user.name,
-                                roles : roleName
-                            },
-                            authConfig.secret,
-                            {
-                                expiresIn : authConfig.expiryAt
-                            }
-                        )
-
+                        let roleName = roles.map((role) => role.name);
+                        let token = jwtService.createJwtToken({
+                            id : user.id,
+                            name : user.name,
+                            roles : roleName
+                        })
+                        
                         return {
                             id : user.id,
                             name : user.name,

@@ -1,6 +1,7 @@
 const express = require('express');
 const categoryController = require('../../../src/controllers/category.controller');
 const categoryValidator = require('../../../src/validators/category.validator');
+const authValidator = require('../../../src/validators/auth.validator');
 
 const router = express.Router();
 
@@ -11,12 +12,12 @@ router.get('/all', categoryController.findAll);
 router.get('/:id',[categoryValidator.categoryValidID], categoryController.findOne);
 
 //create a new category
-router.post('/create', [categoryValidator.categoryValidCreateBody], categoryController.createCategory);
+router.post('/create', [categoryValidator.categoryValidCreateBody, authValidator.verifyJwt, authValidator.isAdmin], categoryController.createCategory);
 
 //update a existed category
-router.put('/:id/update', [categoryValidator.categoryValidID, categoryValidator.categoryValidUpdateBody], categoryController.updateCategory);
+router.put('/:id/update', [categoryValidator.categoryValidID, categoryValidator.categoryValidUpdateBody, authValidator.verifyJwt, authValidator.isAdmin], categoryController.updateCategory);
 
 //delete a category by its ID
-router.delete('/:id/delete', [categoryValidator.categoryValidID], categoryController.deleteCategory);
+router.delete('/:id/delete', [categoryValidator.categoryValidID, authValidator.verifyJwt, authValidator.isAdmin], categoryController.deleteCategory);
 
 module.exports = router;

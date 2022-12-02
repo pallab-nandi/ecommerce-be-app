@@ -164,11 +164,6 @@ function initData() {
     })  
 }
 
-// function initOrderData() {
-    
-// }
-
 db.initData = initData;
-// db.initOrderData = initOrderData;
 
 module.exports = db;

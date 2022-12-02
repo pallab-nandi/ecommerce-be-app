@@ -1,3 +1,4 @@
+const { jwtService } = require("../services/jwt.service");
 const { userService } = require("../services/user.service");
 
 function isEmailDuplicate(req, res, next) {
@@ -53,8 +54,56 @@ function validPassword(req, res, next) {
     } else next();
 }
 
+function verifyJwt(req, res, next) {
+    try {
+        let token = req.headers['x-access-token'];
+        let decoded = jwtService.validateJwt(token);
+        if(decoded.validate) {
+            req.decodedJwt = decoded.decodedJwt;
+            next();
+        } else {
+            console.log(decoded.message);
+            res.setHeader('content-type', 'application/json');
+            res.writeHead(401);
+            res.end(JSON.stringify({
+                message : decoded.message
+            }))
+        }
+    } catch (err) {
+        console.log(err.message);
+        res.setHeader('content-type', 'application/json');
+        res.writeHead(401);
+        res.end(JSON.stringify({
+            message : 'Unauthorized access'
+        }))
+    }
+}
+
+function isAdmin(req, res, next) {
+    if(!req.decodedJwt) {
+        res.setHeader('content-type', 'application/json');
+        res.writeHead(401);
+        res.end(JSON.stringify({
+            message: 'Decoded Jwt is not present for check'
+        }));
+    } else {
+        let roles = req.decodedJwt.roles;
+        let adminRole = roles.filter((role) => role === 'admin');
+        if(adminRole.length == 0) {
+            console.log('User not an Admin');
+            res.setHeader('content-type', 'application/json');
+            res.writeHead(403);
+            res.end(JSON.stringify({
+                message : 'Unauthorized access'
+            }))
+        } else next();
+    }
+}
+
 module.exports = {
     isEmailDuplicate,
     validEmail,
-    validPassword
+    validPassword,
+    verifyJwt,
+    isAdmin
 }

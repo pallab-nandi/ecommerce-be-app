@@ -53,7 +53,7 @@ class UserService {
         .schema
         .findOne({
             where : {
-                email : email.toLowerCase()
+                email : email
             }
         })
     }
