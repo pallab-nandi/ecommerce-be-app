@@ -1,4 +1,4 @@
-const env = process.env.NODE_ENV || 'development'
+const env = process.env.NODE_ENV || 'production'
 const { Sequelize } = require('sequelize');
 const dbConfig = require('./../configs/db.config')[env];
 
