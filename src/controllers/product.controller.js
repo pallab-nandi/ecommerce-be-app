@@ -4,7 +4,7 @@ function findAll(req, res) {
 
     let filters = req.query;
 
-    productService
+    return productService
         .getProducts(filters)
         .then((products) => products.map((product) => product.dataValues))
         .then((product) => {
@@ -30,7 +30,7 @@ function findOne(req, res) {
 
     let ids = req.params;
 
-    productService
+    return productService
         .getProductByID(ids)
         .then((product) => product.dataValues)
         .then((product) => {
@@ -60,7 +60,7 @@ function createProduct(req, res) {
     product.description = req.body.description;
     product.cost = req.body.cost;
 
-    productService
+    return productService
         .createProduct(product)
         .then((product) => product.dataValues)
         .then((product) => {
@@ -69,7 +69,7 @@ function createProduct(req, res) {
             returnValues.message = 'New Product created successfully';
             returnValues.product = product;
             res.setHeader('content-type', 'application/json');
-            res.writeHead(200);
+            res.writeHead(201);
             res.end(JSON.stringify(returnValues));
         })
         .catch((err) => {
@@ -92,7 +92,7 @@ function updateProduct(req, res) {
 
     let id = req.params.id;
 
-    productService
+    return productService
         .updateProductByID(product, id)
         .then((product) => product.dataValues)
         .then((product) => {
@@ -118,7 +118,7 @@ function deleteProductByID(req, res) {
     
     let id = req.params.id;
 
-    productService
+    return productService
         .deleteProductByID(id)
         .then((product) => product.dataValues)
         .then((product) => {

@@ -1,7 +1,7 @@
 const { categoryService } = require('../services/category.service');
 
 function findAll(req, res) {
-    categoryService
+    return categoryService
         .getCategories()
         .then((categories) => categories.map((category) => category.dataValues))
         .then((category) => {
@@ -27,7 +27,7 @@ function findOne(req, res) {
 
     let id = req.params.id;
 
-    categoryService
+    return categoryService
         .getCategoryByID(id)
         .then((category) => category.dataValues)
         .then((category) => {
@@ -55,7 +55,7 @@ function createCategory(req, res) {
     category.name = req.body.name;
     category.description = req.body.description;
 
-    categoryService
+    return categoryService
         .createCategory(category)
         .then((category) => category.dataValues)
         .then((category) => {
@@ -64,7 +64,7 @@ function createCategory(req, res) {
             returnValue.message = 'New category created succesfully'
             returnValue.category = category;
             res.setHeader('content-type', 'application/json');
-            res.writeHead(200);
+            res.writeHead(201);
             res.end(JSON.stringify(returnValue));
         })
         .catch((err) => {
@@ -85,7 +85,7 @@ function updateCategory(req, res) {
 
     let id = req.params.id
 
-    categoryService
+    return categoryService
         .updateCategoryByID(category, id)
         .then((category) => category.dataValues)
         .then((category) => {
@@ -111,7 +111,7 @@ function deleteCategory(req, res) {
 
     let id = req.params.id;
 
-    categoryService
+    return categoryService
         .deleteCategoryByID(id)
         .then((category) => category.dataValues)
         .then((category) => {

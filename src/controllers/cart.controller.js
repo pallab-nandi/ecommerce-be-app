@@ -7,7 +7,7 @@ function addCart(req, res) {
     cart.productID = req.body.productID;
     cart.quantity = req.body.quantity;
     
-    cartService
+    return cartService
     .addCart(cart)
     .then((cart) => cart.dataValues)
     .then(async (cart) => {
@@ -25,7 +25,7 @@ function addCart(req, res) {
     })
     .then(() => {
         res.setHeader('content-type', 'application/json');
-        res.writeHead(200);
+        res.writeHead(201);
         res.end(JSON.stringify({
             message : 'Cart added successfully'
         }))
@@ -44,7 +44,7 @@ function getCart(req, res) {
     let filters = req.query;
     let userID = req.decodedJwt.id;
 
-    cartService
+    return cartService
     .getAllCart(filters, userID)
     .then((carts) => {
         console.log('All carts fetched successfully');
@@ -74,7 +74,7 @@ function updateCart(req, res) {
     cart.productID = req.body.productID;
     cart.quantity = req.body.quantity;
 
-    cartService
+    return cartService
     .updateCartByID(cart, id)
     .then(async (cart) => {
         let prodID = await cartService.findProduct(id);
@@ -111,7 +111,7 @@ function deleteCartByID(req, res) {
     let status = req.query.delete;
     let id = req.params.id;
 
-    cartService
+    return cartService
     .deleteCartByID(id, status)
     .then(() => {
         cartService

@@ -6,10 +6,10 @@ const authValidator = require('../../../src/validators/auth.validator');
 const router = express.Router();
 
 //fetching all users
-router.get('/all', userController.findAll);
+router.get('/all',[authValidator.verifyJwt, authValidator.isAdmin], userController.findAll);
 
 //fetch user by ID
-router.get('/:id', [userValidator.userValidID], userController.findOne);
+router.get('/:id', [userValidator.userValidID, authValidator.verifyJwt, authValidator.isAdmin], userController.findOne);
 
 //create user
 // router.post('/create', [userValidator.userValidCreateBody], userController.createUser);

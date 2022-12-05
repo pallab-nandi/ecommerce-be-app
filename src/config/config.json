@@ -1,0 +1,29 @@
+{
+    "development" : {
+        "HOST" : "127.0.0.1",
+        "USER" : "root",
+        "PASSWORD" : "",
+        "DB" : "ecommerce",
+        "dialect" : "mysql",
+        "pool" : {
+            "min" : 0,
+            "max" : 5,
+            "acquire" : 30000,
+            "idle" : 10000
+        }
+    },
+
+    "production" : {
+        "HOST" : "sql6.freesqldatabase.com",
+        "USER" : "sql6582840",
+        "PASSWORD" : "qJCH5WkTz9",
+        "DB" : "sql6582840",
+        "dialect" : "mysql",
+        "pool" : {
+            "min" : 0,
+            "max" : 5,
+            "acquire" : 30000,
+            "idle" : 10000
+        }
+    }
+}

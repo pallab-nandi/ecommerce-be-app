@@ -1,7 +1,7 @@
 const { userService } = require('../services/user.service');
 
 function findAll(req, res) {
-    userService
+    return userService
         .findAll()
         .then((users) => users.map((user) => user.dataValues))
         .then((user) => {
@@ -27,7 +27,7 @@ function findOne(req, res) {
 
     let id = req.params.id;
 
-    userService
+    return userService
         .findOne(id)
         .then((user) => user.dataValues)
         .then((user) => {
@@ -56,7 +56,7 @@ function createUser(req, res) {
     user.email = req.body.email;
     user.password = req.body.password;
     
-    userService
+    return userService
         .createUser(user)
         .then((user) => user.dataValues)
         .then((user) => {
@@ -65,7 +65,7 @@ function createUser(req, res) {
             returnValues.message = 'User created successfully';
             returnValues.user = user;
             res.setHeader('content-type', 'application/json');
-            res.writeHead(200);
+            res.writeHead(201);
             res.end(JSON.stringify(returnValues))
         })
         .catch((err) => {
@@ -87,7 +87,7 @@ function updateUser(req, res) {
 
     let id = req.params.id;
 
-    userService
+    return userService
         .updateUser(user, id)
         .then((user) => user.dataValues)
         .then((user) => {
@@ -113,7 +113,7 @@ function deleteUser(req, res) {
 
     let id = req.params.id;
 
-    userService
+    return userService
         .deleteUser(id)
         .then((user) => user.dataValues)
         .then((user) => {

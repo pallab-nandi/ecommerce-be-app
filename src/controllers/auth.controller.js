@@ -9,7 +9,7 @@ function signUp(req, res) {
 
     let role = req.body.role
 
-    authService
+    return authService
     .signUp(user, role)
     .then((user) => {
         let returnValues = {};
@@ -34,7 +34,7 @@ function signIn(req, res) {
     let email = req.body.email;
     let password = req.body.password
 
-    authService
+    return authService
     .signIn(email, password)
     .then((authRes) => {
         res.setHeader('content-type', 'application/json');
