@@ -35,6 +35,7 @@ class ProductService {
     }
 
     getProductByID(ids) {
+        ids = Object.values(ids);
         return this
         .schema
         .findOne({
