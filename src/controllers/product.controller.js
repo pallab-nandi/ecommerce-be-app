@@ -12,7 +12,7 @@ function findAll(req, res) {
             let returnValues = {};
             returnValues.message = 'All products are fetched successfully';
             returnValues.product = product;
-            res.setHeader('content-type', 'applciation/json');
+            res.setHeader('content-type', 'appliciation/json');
             res.writeHead(200);
             res.end(JSON.stringify(returnValues));
         })
