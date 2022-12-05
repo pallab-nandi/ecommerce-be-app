@@ -35,7 +35,7 @@ function findOne(req, res) {
             let returnValue = {}
             returnValue.message = 'Category fetched by ID';
             returnValue.category = category;
-            res.setHeader('content-type', 'applicaiton/json');
+            res.setHeader('content-type', 'application/json');
             res.writeHead(200);
             res.end(JSON.stringify(returnValue))
         })

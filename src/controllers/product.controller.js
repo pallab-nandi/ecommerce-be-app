@@ -12,7 +12,7 @@ function findAll(req, res) {
             let returnValues = {};
             returnValues.message = 'All products are fetched successfully';
             returnValues.product = product;
-            res.setHeader('content-type', 'appliciation/json');
+            res.setHeader('content-type', 'application/json');
             res.writeHead(200);
             res.end(JSON.stringify(returnValues));
         })
@@ -44,7 +44,7 @@ function findOne(req, res) {
         })
         .catch((err) => {
             console.log('Error while fetching the product', err);
-            res.setHeader('content-type', 'appliction/json');
+            res.setHeader('content-type', 'application/json');
             res.writeHead(500);
             res.end(JSON.stringify({
                 'message' : 'Error while fetching the product'
