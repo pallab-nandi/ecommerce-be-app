@@ -14,10 +14,10 @@
     },
 
     "production" : {
-        "HOST" : "sql6.freesqldatabase.com",
-        "USER" : "sql6582840",
-        "PASSWORD" : "qJCH5WkTz9",
-        "DB" : "sql6582840",
+        "HOST" : "ecommerce-app.cthlsotgklw3.ap-northeast-1.rds.amazonaws.com",
+        "USER" : "pallabnandi",
+        "PASSWORD" : "root7890",
+        "DB" : "ecommerce",
         "dialect" : "mysql",
         "pool" : {
             "min" : 0,
