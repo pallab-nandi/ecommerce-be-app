@@ -24,7 +24,11 @@ The current project is deployed on the <b>cyclic.sh</b> platform. Therefore, the
 
 For Products CRUD operation, the common route is `/ecomm/api/v1/product` . Now the following operations are :
 
-- `/all` - to fetch all products (Also filters available like maxCost, minCost etc.)
+- `/all` - to fetch all products
+- `/all?maxPrice=[value]` - to fetch the products from lowest price to maxPrice
+- `/all?minPrice=[value]` - to fetch the products from minPrice to available maximum price
+- `/all?minPrice=[value]&maxPrice=[value]` - to fetch the products between these price limits
+- `/all?categoryID=[id]` - to fetch the products of particular Category
 - `/[id]` - to fetch according as product ID
 - `/create` - to create new product (Only accessable by Admin)
 - `/[id]/update` - to update the specific product (Only accessable by Admin)
