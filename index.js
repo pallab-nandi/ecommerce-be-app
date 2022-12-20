@@ -6,7 +6,7 @@ const db = require('./src/models/index.model');
 
 app.use(bodyParser.json());
 
-db.sequelize.sync({ force : true })
+db.sequelize.sync({ alter : true })
 .then(async () => {
     await db.initData();
     console.log('Database Initialized Successfully');

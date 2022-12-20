@@ -87,4 +87,4 @@ If one follows these prerequisite, then proceed the step as follow
 
 <h2>Project Version</h2>
 
-The current version of the application is `v1.0`
+The current version of the application is `v1.0.0`
