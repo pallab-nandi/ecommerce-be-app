@@ -22,7 +22,7 @@ A BackEnd application of e-commerce built on MVC(Model-View-Controller) structur
 
 The current project is deployed on the <b>cyclic.sh</b> platform. Therefore, the root directory for the API is <br>`pallabnandi-ecommerce-app.cyclic.app`
 
-For Products CRUD operation, the common route is `/ecomm/api/v1/product` . Now the following operations are :
+For Products CRUD operation, the common route is `/api/v1/product` . Now the following operations are :
 
 - `/all` - to fetch all products
 - `/all?maxPrice=[value]` - to fetch the products from lowest price to maxPrice
@@ -34,7 +34,7 @@ For Products CRUD operation, the common route is `/ecomm/api/v1/product` . Now t
 - `/[id]/update` - to update the specific product (Only accessable by Admin)
 - `/[id]/delete` - to delete the specific product (Only accessable by Admin)
 
-For Categories CRUD operation, the common route is `/ecomm/api/v1/category` . Now the following operations are :
+For Categories CRUD operation, the common route is `/api/v1/category` . Now the following operations are :
 
 - `/all` - to fetch all categories
 - `/[id]` - to fetch according as category ID
@@ -42,14 +42,14 @@ For Categories CRUD operation, the common route is `/ecomm/api/v1/category` . No
 - `/[id]/update` - to update the specific category (Only accessable by Admin)
 - `/[id]/delete` - to delete the specific category (Only accessable by Admin)
 
-For Users CRUD operation, the common route is `/ecomm/api/v1/user` . Now the following operations are :
+For Users CRUD operation, the common route is `/api/v1/user` . Now the following operations are :
 
 - `/all` - to fetch all users (Only accessable by Admin)
 - `/[id]` - to fetch according as User ID (Only accessable by Admin)
 - `/[id]/update` - to update the specific user (Only accessable by Admin)
 - `/[id]/delete` - to delete the specific user (Only accessable by Admin)
 
-For Cart CRUD operation, the common route is `/ecomm/api/v1/cart` . Now the following operations are :
+For Cart CRUD operation, the common route is `/api/v1/cart` . Now the following operations are :
 
 - `/view` - to fetch all Cart Items with status 'Processed' or 'Shipped' (Only accessably by Authenticate User)
 - `/view?status=all` - to fetch all Cart Items with all type of status (Only accessably by Authenticate User)
@@ -58,7 +58,7 @@ For Cart CRUD operation, the common route is `/ecomm/api/v1/cart` . Now the foll
 - `/[id]` - to update the specific category (Only accessable by Admin)
 - `/[id]/delete` - to delete the specific category (Only accessable by Admin)
 
-For Auth, the common route is `/ecomm/api/v1/auth` . Now the following operations are :
+For Auth, the common route is `/api/v1/auth` . Now the following operations are :
 
 - `/signup` - to register self as new user.
 - `/login` - to login self.

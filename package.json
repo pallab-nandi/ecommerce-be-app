@@ -7,8 +7,16 @@
     "test": "jest",
     "start": "node ./index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pallab-nandi/ecommerce-be-app.git"
+  },
   "author": "Pallab Nandi",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pallab-nandi/ecommerce-be-app/issues"
+  },
+  "homepage": "https://github.com/pallab-nandi/ecommerce-be-app#readme",
   "dependencies": {
     "@types/jest": "^29.2.3",
     "bcryptjs": "^2.4.3",
