@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const serverConfig = require('./src/configs/server.config');
 const bodyParser = require('body-parser');
+const path = require('path');
 const db = require('./src/models/index.model');
 
 app.use(bodyParser.json());
@@ -16,7 +17,8 @@ require('./routes/api/index.routes')(app);
 
 
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
+    console.log('Hello, World');
+    res.status(200).sendFile(path.join(__dirname,'./src/public/index.html'));
 })
 
 
